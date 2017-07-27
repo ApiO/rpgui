@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Foo</title>
+	<meta charset="UTF-8">
+	<link href="style.css" media="all" rel="stylesheet">
+	<script src="script.js"></script>
+<head>
+<body class="noselect">
+	<div class="sample-menu">
+		<span>RPGUI : </span>
+		<a href="#" onclick="AddBar();">Add bar</a> - 
+		<a id="BarLock" href="#">Unlock ui</a>
+	</div>
+	<div class="skill-bar-menu">
+		<div class="skill-bar-menu-close" id="SkillMenuCloseButton">x</div>
+		<div class="skill-bar-menu-title">Position:</div>
+		<div class="heigher skill-bar-menu-row">
+			<div class="skill-bar-menu-cell">X</div>			
+			<div class="skill-bar-menu-cell">
+				<input type="submit" class="skill-bar-menu-horizontal-button inlineblock" value="+">
+				<input type="text"   class="skill-bar-menu-cell inlineblock" id="PositionX" />
+				<input type="submit" class="skill-bar-menu-horizontal-button inlineblock" value="-">
+			</div>
+			<div class="skill-bar-menu-cell">Y</div>			
+			<div class="skill-bar-menu-cell inblock">
+				<input type="submit" class="skill-bar-menu-vertical-button inlist" value="+">
+				<input type="text"   class="skill-bar-menu-cell inlist" id="PositionY" />
+				<input type="submit" class="skill-bar-menu-vertical-button inlist" value="-">
+			</div>
+		</div>
+		<div class="skill-bar-menu-title">Behaviors:</div>
+		<div class="skill-bar-menu-row">
+			<div class="skill-bar-menu-cell cell2">Buttons</div>
+			<div class="skill-bar-menu-cell cell2">
+				<input type="text" class="skill-bar-menu-cell" id="ButtonsNumber" />
+			</div>
+		</div>
+		<div class="skill-bar-menu-row">
+			<div class="skill-bar-menu-cell cell2">Rows</div>
+			<div class="skill-bar-menu-cell cell2">
+				<input type="text" class="skill-bar-menu-cell" id="RowsNumber" />
+			</div>
+		</div>
+	</div>
+	<script>window.onload = Initialize;</script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 Prototype of RPG UI in standard HTML/CSS3. No jQuery or browsers specifics.
 
 # Try it
-[JSFiddle](https://jsfiddle.net/Lj9w6Lbn/)
+Go to demo/default.html, enjoy.
 
 ## Features
 

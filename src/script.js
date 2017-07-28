@@ -53,7 +53,7 @@ function Initialize(){
 function InitializeSkillBarMenu(){	
 	document.getElementById('SkillMenuCloseButton').onclick = HideSkillBarMenu;	
 	
-	document.getElementsByClassName('skill-bar-menu')[0].onmousedown = function(event){
+    document.getElementById('sbm').onmousedown = function(event){
 		event.stopPropagation();
 		// exit if anything else than left click
 		if(event.which != 1) return;
@@ -63,23 +63,24 @@ function InitializeSkillBarMenu(){
 	
 	/*
 	var menu = document.createElement('div');
-	menu.className = 'skill-bar-menu';
+	menu.id = 'sbm';
+	menu.className = 'sbm';
 	
 	// Add close button
 	var closeButton = document.createElement('div');
 	closeButton.id = 'SkillMenuCloseButton';
-	closeButton.className = 'skill-bar-menu-close';
+	closeButton.className = 'sbm-close';
 	closeButton.onclick = HideSkillBarMenu;	
 	menu.appendChild(closeButton);
 	
 	// Add position section
 	var title = document.createElement('div');
-	title.className = 'skill-bar-menu-title';
+	title.className = 'sbm-title';
 	title.innerHtml = 'Position:';
 	menu.appendChild(title);
 	
 	var row = document.createElement('div');
-	row.className = 'heigher skill-bar-menu-row';
+	row.className = 'sbm-row';
 	
 	
 	
@@ -90,7 +91,7 @@ function InitializeSkillBarMenu(){
 }
 
 function DisplaySkillBarMenu(e, bar){
-	var menu = document.getElementsByClassName('skill-bar-menu')[0];
+    var menu = document.getElementById('sbm');
 	menu.style.display='block';
 	gui.isSkillBarMenuOpened = true;
 	
@@ -119,7 +120,7 @@ function GetPosition(node) {
 };
 
 function HideSkillBarMenu(){
-	var menu = document.getElementsByClassName('skill-bar-menu')[0];
+    var menu = document.getElementById('sbm');
 	menu.style.display='none';
 	gui.isSkillBarMenuOpened = false;
 };

@@ -1,8 +1,8 @@
 # rpgui
-Prototype of RPG UI in standard HTML/CSS3. No jQuery or browsers specifics.
+Prototype of RPG UI in standard HTML/CSS3 without javascript framework.
 
 # Try it
-Go to demo/default.html, enjoy.
+Go to: demo/default.html, enjoy.
 
 ## Features
 

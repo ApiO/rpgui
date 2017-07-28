@@ -10,36 +10,36 @@
 	<div>
 		<span>RPGUI : </span>
 		<a href="#" onclick="AddBar();">Add bar</a> - 
-		<a id="BarLock" href="#">Unlock ui</a>
+		<a id="bar-lock" href="#">Unlock ui</a>
 	</div>
 	<div class="sbm" id="sbm">
-		<div class="sbm-close" id="SkillMenuCloseButton">x</div>
+		<div class="sbm-close" id="sbm-close">x</div>
 		<div class="sbm-title">Position:</div>
 		<div class="heigher sbm-row">
 			<div class="sbm-cell">X</div>			
 			<div class="sbm-cell">
-				<input type="submit" class="sbm-button sbm-horizontal-button inlineblock" value="-" id="PosXDecr">
-				<input type="text"   class="sbm-intput inlineblock" id="PositionX" />
-				<input type="submit" class="sbm-button sbm-horizontal-button inlineblock" value="+" id="PosXIncr">
+				<input type="submit" class="sbm-button sbm-horizontal-button inlineblock" value="-" id="sbm-pos-x-decr">
+				<input type="text"   class="sbm-intput inlineblock" id="sbm-pos-x" />
+				<input type="submit" class="sbm-button sbm-horizontal-button inlineblock" value="+" id="sbm-pos-x-incr">
 			</div>
 			<div class="sbm-cell">Y</div>			
 			<div class="sbm-cell horizontalCenter">
-				<input type="submit" class="sbm-button sbm-vertical-button inlist" value="+" id="PosYIncr">
-				<input type="text"   class="sbm-intput inlist" id="PositionY" />
-				<input type="submit" class="sbm-button sbm-vertical-button inlist" value="-" id="PosYDecr">
+				<input type="submit" class="sbm-button sbm-vertical-button inlist" value="+" id="sbm-pos-y-incr">
+				<input type="text"   class="sbm-intput inlist" id="sbm-pos-y" />
+				<input type="submit" class="sbm-button sbm-vertical-button inlist" value="-" id="sbm-pos-y-decr">
 			</div>
 		</div>
 		<div class="sbm-title">Behaviors:</div>
 		<div class="sbm-row">
 			<div class="sbm-cell sbm-cell2">Buttons</div>
 			<div class="sbm-cell sbm-cell2">
-				<input type="text" class="sbm-intput" id="ButtonsNumber" />
+				<input type="range" class="sbm-intput" id="sbm-buttons" min="1" max="50" value="10"/>
 			</div>
 		</div>
 		<div class="sbm-row">
 			<div class="sbm-cell sbm-cell2">Rows</div>
 			<div class="sbm-cell sbm-cell2">
-				<input type="text" class="sbm-intput" id="RowsNumber" />
+				<input type="range" class="sbm-intput" id="sbm-rows" min="1" max="50" value="1" />
 			</div>
 		</div>
 	</div>

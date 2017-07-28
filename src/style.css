@@ -4,11 +4,11 @@ body {
     color: #646464;
     margin: 0;
     padding: 0;
-    overflow: hidden
+    overflow: hidden;
 }
 
 a {
-    color: #186094
+    color: #186094;
 }
 
 .noselect {
@@ -16,7 +16,7 @@ a {
     -khtml-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
 }
 
 .skill-bar {
@@ -33,12 +33,12 @@ a {
 }
 
     .skill-bar.movable {
-        border: solid 1px #197c8c
+        border: solid 1px #197c8c;
     }
 
         .skill-bar.movable:hover {
             cursor: move;
-            border: solid 1px #f78600
+            border: solid 1px #f78600;
         }
 
 .skill-button {
@@ -58,20 +58,17 @@ a {
     border-bottom: solid 1px #a5a4a4;
     border-left: solid 1px #616161;
     border-right: solid 1px #616161;
-    border-top: solid 1px #4c4c4c
+    border-top: solid 1px #4c4c4c;
 }
 
 .skill-bar:not(.movable) > .skill-button:not(.disabled):hover {
     box-shadow: inset 0 0 6px #989898;
-    border-color: #b7b7b7
+    border-color: #b7b7b7;
 }
 
 .skill-button.disabled {
-    background: linear-gradient(
-      rgba(125, 74, 74, 0.7),
-	  rgba(23, 23, 23, 0.7)
-	);
-	border: solid 1px #383838;
+    background: linear-gradient( rgba(125, 74, 74, 0.7), rgba(23, 23, 23, 0.7) );
+    border: solid 1px #383838;
 }
 
 .skill-button > .skill-button-countdown {
@@ -86,7 +83,7 @@ a {
 
 .skill-button > .skill-button-shortcut {
     position: absolute;
-    margin: 1px 0 0 3px
+    margin: 1px 0 0 3px;
 }
 
 .sbm {
@@ -100,13 +97,13 @@ a {
     background-color: #252526;
     color: #DCDCDC;
     cursor: move;
-    display: none
+    display: none;
 }
 
 .sbm-title {
     color: #737373;
     padding-top: 6px;
-    height: 18px
+    height: 18px;
 }
 
 .sbm-row {
@@ -131,7 +128,7 @@ a {
         color: #DCDCDC;
         border: solid 1px #3F3F46;
         background: #2D2D30;
-        text-align: center
+        text-align: center;
     }
 
     .sbm-cell > .sbm-button {
@@ -158,7 +155,7 @@ a {
 }
 
 .sbm-cell.sbm-cell2 {
-    width: 47%
+    width: 47%;
 }
 
 .sbm-close {
@@ -172,17 +169,17 @@ a {
     background-color: #1d1d1d;
     border: solid 1px #3F3F46;
     -ms-border-radius: 4px;
-    border-radius: 4px
+    border-radius: 4px;
 }
 
     .sbm:hover,
     .sbm-close:hover,
     .sbm-cell > input:hover {
-        border: solid 1px #676767
+        border: solid 1px #676767;
     }
 
 .inlist {
-    display: list-item
+    display: list-item;
 }
 
 .horizontalCenter {
@@ -190,11 +187,11 @@ a {
     text-align: -webkit-center;
 }
 
-/* SPECIFIC */
-#PosXDecr, #PositionX {
+/* DIRTY TEMP SPECIFIC */
+#sbm-pos-x-decr, #sbm-pos-x {
     margin-right: -6px;
 }
 
-#PositionX {
+#sbm-pos-x {
     height: 19px;
 }

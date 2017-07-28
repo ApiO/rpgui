@@ -144,7 +144,7 @@ function StartSkillCountDown(button){
 	
 	var labelCountDown = document.createElement('span');
 	labelCountDown.innerText = duration;
-	labelCountDown.className = 'countdown';
+	labelCountDown.className = 'skill-button-countdown';
 	button.appendChild(labelCountDown);
 	
 	SkillButtonCountDown(button, precision, duration, labelCountDown);
@@ -152,7 +152,7 @@ function StartSkillCountDown(button){
 
 function SkillButtonCountDown(button, interval, countDown, labelCountDown){
 	
-	labelCountDown.innerText = countDown/1000.0;
+	labelCountDown.innerText = countDown/1000;
 	
 	countDown -= interval;
 		
@@ -161,7 +161,7 @@ function SkillButtonCountDown(button, interval, countDown, labelCountDown){
 		button.removeChild(labelCountDown);
 		return;
 	}
-		
+	
 	setTimeout(SkillButtonCountDown, interval, 
 				button, interval, countDown, labelCountDown);
 };
@@ -182,7 +182,7 @@ function AddBar(){
 		button.className = 'skill-button';
 		
 		var shortcut = document.createElement('span');
-		shortcut.className = 'shortcut';
+		shortcut.className = 'skill-button-shortcut';
 		shortcut.innerText = i+1;
 		
 		button.appendChild(shortcut);

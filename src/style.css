@@ -67,21 +67,24 @@ a {
 }
 
 .skill-button.disabled {
-    -ms-opacity: .3;
-    opacity: .3
+    background: linear-gradient(
+      rgba(125, 74, 74, 0.7),
+	  rgba(23, 23, 23, 0.7)
+	);
+	border: solid 1px #383838;
 }
 
-.skill-button > .countdown {
+.skill-button > .skill-button-countdown {
     text-align: center;
-    color: #fff;
+    color: #d6c757;
     font-size: 18px;
     width: 32px;
     height: 32px;
     margin-top: 5px;
-    position: absolute
+    position: absolute;
 }
 
-.skill-button > .shortcut {
+.skill-button > .skill-button-shortcut {
     position: absolute;
     margin: 1px 0 0 3px
 }

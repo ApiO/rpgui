@@ -9,7 +9,7 @@
 <body class="noselect">
 	<div>
 		<span>RPGUI : </span>
-		<a href="#" onclick="AddBar();">Add bar</a> - 
+		<a href="#" onclick="SpawnBar();">Add bar</a> - 
 		<a id="bar-lock" href="#">Unlock ui</a>
 	</div>
 	<div class="sbm" id="sbm">
@@ -33,13 +33,15 @@
 		<div class="sbm-row">
 			<div class="sbm-cell sbm-cell2">Buttons</div>
 			<div class="sbm-cell sbm-cell2">
-				<input type="range" class="sbm-intput" id="sbm-buttons" min="1" max="50" value="10"/>
+			    <input type="range" class="sbm-slider" id="sbm-buttons" min="1" max="50" value="10"/>
+			    <div id="sbm-buttons-value" class="sbm-slider-value"></div>
 			</div>
 		</div>
 		<div class="sbm-row">
 			<div class="sbm-cell sbm-cell2">Rows</div>
 			<div class="sbm-cell sbm-cell2">
-				<input type="range" class="sbm-intput" id="sbm-rows" min="1" max="50" value="1" />
+				<input type="range" class="sbm-slider" id="sbm-rows" min="1" max="50" value="1" />
+                <div id="sbm-rows-value" class="sbm-slider-value"></div>
 			</div>
 		</div>
 	</div>

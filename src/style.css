@@ -41,6 +41,10 @@ a {
             border: solid 1px #f78600;
         }
 
+        .skill-bar.movable.selected {
+            border: solid 1px #FF0000;
+        }
+
 .skill-button {
     -ms-border-radius: 4px;
     border-radius: 4px;
@@ -91,6 +95,7 @@ a {
     z-index: 99999;
     top: 0;
     left: 0;
+    border-radius: 4px;
     padding: 2px 12px 8px;
     width: 186px;
     border: solid 1px #3F3F46;
@@ -174,7 +179,7 @@ a {
 
     .sbm:hover,
     .sbm-close:hover,
-    .sbm-cell > input:hover {
+    .sbm-cell > input:not(input[type=range]::-webkit-slider-runnable-track):hover {
         border: solid 1px #676767;
     }
 
@@ -194,4 +199,43 @@ a {
 
 #sbm-pos-x {
     height: 19px;
+}
+
+/* SLIDER */
+
+.sbm-slider {
+    -webkit-appearance: none;
+    width: 54px;
+    margin: 4.3px 0;
+}
+
+    .sbm-slider:focus {
+        outline: none;
+    }
+
+    .sbm-slider::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        box-shadow: 0 0 0 #000000, 0 0 0 #0d0d0d;
+        background: #686868;
+        border-radius: 1.3px;
+        border: 0.2px solid #010101;
+    }
+
+    .sbm-slider::-webkit-slider-thumb {
+        box-shadow: 0 0 0 #000000, 0 0 0 #0d0d0d;
+        border: 1px solid #000000;
+        height: 17px;
+        width: 16px;
+        border-radius: 2px;
+        background: #3e3e42;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -4.5px;
+    }
+
+.sbm-slider-value {
+    display: inline-block;
+    width: 18px;
 }

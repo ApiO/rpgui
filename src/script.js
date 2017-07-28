@@ -3,7 +3,7 @@
 var gui = {
     lock: null,
     isEditMode: false,
-    isSkillBarMenuOpened: false,
+    barMenuTarget: null,
     movable: null
 };
 
@@ -15,7 +15,7 @@ function Initialize() {
             if (gui.isEditMode) return;
             SkillButton_onclick(e.target);
         }
-    }
+    };
 
     // Handle rgith click
     window.oncontextmenu = OnWindowContextMenu;
@@ -28,22 +28,23 @@ function Initialize() {
     InitializeSkillBarMenu();
 
     // Load user UI
-    AddBar();
+    SpawnBar();
 };
 
 function OnWindowContextMenu(e) {
     e.stopPropagation();
 
-    // if right click on edition mode
+    // if right click on edition mode 
     if (gui.isEditMode) {
+        //TODO: dirty
         if (e.target.classList.contains("skill-bar")) {
-            DisplaySkillBarMenu(e, e.target);
+            ShowSkillBarMenu(e, e.target);
         }
         else {
             if (e.target.parentNode &&
                 e.target.parentNode.classList &&
                 e.target.parentNode.classList.contains("skill-bar")) {
-                DisplaySkillBarMenu(e, e.target.parentNode);
+                ShowSkillBarMenu(e, e.target.parentNode);
             }
         }
     }
@@ -57,61 +58,100 @@ function InitializeSkillBarMenu() {
         event.stopPropagation();
         // exit if anything else than left click
         if (event.which !== 1) return;
-
-        BeginDrageMovable(event, this, null);
+        BeginDragMovable(event, this, null);
     };
 
-    // setup PositionX
-
-    document.getElementById("sbm-pos-x").addEventListener("change", function () {
-        console.log(this);
-    });
-    document.getElementById("sbm-pos-x-incr").addEventListener("click", function () {
-        console.log(this);
-    });
-    document.getElementById("sbm-pos-x-decr").addEventListener("click", function () {
-        console.log(this);
-    });
-
-    // setup PositionY
-
-    document.getElementById("sbm-pos-y").addEventListener("change", function () {
-        console.log(this);
-    });
-    document.getElementById("sbm-pos-y-incr").addEventListener("click", function () {
-        console.log(this);
-    });
-    document.getElementById("sbm-pos-y-decr").addEventListener("click", function () {
-        console.log(this);
-    });
+    // setup axes
+    InitializePositionAxe("sbm-pos-x", true);
+    InitializePositionAxe("sbm-pos-y", false);
 
     // setup sliders
-
-    document.getElementById("sbm-buttons").addEventListener("change", function (event) {
-        event.stopPropagation();
-        console.log(this);
-    });
-
-    document.getElementById("sbm-rows").addEventListener("change", function (event) {
-        event.stopPropagation();
-        console.log(this);
-    });
-
+    InitializeSlider("sbm-buttons", OnRowSliderChange);
+    InitializeSlider("sbm-rows", OnRowSliderChange);
 };
 
-function DisplaySkillBarMenu(e, bar) {
+function InitializePositionAxe(id, isX) {
+    const input = document.getElementById(id);
+
+    input.oninput = function (event) {
+        console.log(id + " oninput", event);//TODO
+        parseInt(input.value);
+    };
+
+    document.getElementById(id + "-incr").addEventListener("click", function () {
+        SkillBarMenuPositionClick(input, 1, isX);
+    });
+
+    document.getElementById(id + "-decr").addEventListener("click", function () {
+        SkillBarMenuPositionClick(input, -1, isX);
+    });
+};
+
+function SkillBarMenuPositionClick(input, increment, isX) {
+    const pos = ReadSkillBarPosition();
+    if (isX && pos.x === 0 && increment < 0) return;
+    if (!isX && pos.y === 0 && increment < 0) return;
+
+    //TODO: return on bar.width + pos.x > screen.width & same with Y/height
+
+    input.value = parseInt(input.value) + increment;
+
+    if (isX) {
+        pos.x += increment;
+    } else {
+        pos.y += increment;
+    }
+
+    SetSkillBarPosition(pos);
+};
+
+function ReadSkillBarPosition() {
+    const targetStyle = gui.barMenuTarget.style;
+    return {
+        x: parseInt(targetStyle.left.replace("px", "")),
+        y: parseInt(targetStyle.top.replace("px", ""))
+    };
+};
+
+function SetSkillBarPosition(pos) {
+    const targetStyle = gui.barMenuTarget.style;
+    targetStyle.top = pos.y + "px";
+    targetStyle.left = pos.x + "px";
+};
+
+function OnButtonSliderChange(event, slider) {
+    console.log(slider.id + " OnButtonSlider input:" + slider.value); //TODO
+};
+
+function OnRowSliderChange(event, slider) {
+    console.log(slider.id + " OnRowSlider input:" + slider.value, event); //TODO
+};
+
+function StopMouseDownPropagation(event) {
+    event.stopPropagation();
+};
+
+function InitializeSlider(id, callback) {
+    const slider = document.getElementById(id);
+    slider.onmousedown = StopMouseDownPropagation;
+
+    const label = document.getElementById(id + "-value");
+    label.innerHTML = slider.value;
+
+    slider.oninput = function (event) {
+        event.stopPropagation();
+        label.innerHTML = this.value;
+        callback(event, this);
+    };
+};
+
+function ShowSkillBarMenu(e, bar) {
     const menu = document.getElementById("sbm");
     menu.style.display = "block";
-    gui.isSkillBarMenuOpened = true;
-
     menu.style.top = e.pageY + "px";
     menu.style.left = e.pageX + "px";
 
-    const pos = GetPosition(bar);
-    UpdateBarMenuPosition(pos.x, pos.y);
-
-    document.getElementById("sbm-buttons").value = 10;
-    document.getElementById("sbm-rows").value = 1;
+    UpdateSkillBarMenu(bar);
 };
 
 function GetPosition(node) {
@@ -131,12 +171,25 @@ function GetPosition(node) {
 function HideSkillBarMenu() {
     const menu = document.getElementById("sbm");
     menu.style.display = "none";
-    gui.isSkillBarMenuOpened = false;
+    gui.barMenuTarget = null;
 };
 
-function UpdateBarMenuPosition(x, y) {
-    document.getElementById("sbm-pos-x").value = (x + "").replace("px", "");
-    document.getElementById("sbm-pos-y").value = (y + "").replace("px", "");
+function UpdateSkillBarMenu(bar) {
+    gui.barMenuTarget = bar;
+
+    const pos = GetPosition(bar);
+    UpdateSkillBarMenuPosition(pos.x, pos.y);
+    
+    SelectSkillBar(bar);
+
+    //TODO: rows/buttons from bar ref.
+    document.getElementById("sbm-buttons").value = 10;
+    document.getElementById("sbm-rows").value = 1;
+};
+
+function UpdateSkillBarMenuPosition(x, y) {
+    document.getElementById("sbm-pos-x").value = x;
+    document.getElementById("sbm-pos-y").value = y;
 };
 
 function SkillButton_onclick(button) {
@@ -157,7 +210,7 @@ function StartSkillCountDown(button) {
     button.appendChild(labelCountDown);
 
     SkillButtonCountDown(button, precision, duration, labelCountDown);
-}
+};
 
 function SkillButtonCountDown(button, interval, countDown, labelCountDown) {
 
@@ -175,7 +228,7 @@ function SkillButtonCountDown(button, interval, countDown, labelCountDown) {
         button, interval, countDown, labelCountDown);
 };
 
-function AddBar() {
+function SpawnBar() {
     const bar = document.createElement("div");
     bar.className = "skill-bar";
 
@@ -216,7 +269,7 @@ function ToggleSkillBarLock() {
         } else {
             bar.className = bar.className.replace(" movable", "");
             bar.onmousedown = null;
-            if (gui.isSkillBarMenuOpened) {
+            if (gui.barMenuTarget) {
                 HideSkillBarMenu();
             }
         }
@@ -229,31 +282,42 @@ function SetSkillBarMovable(bar) {
         event.stopPropagation();
         // exit if anything else than left click
         if (event.which !== 1) return;
-        BeginDrageMovable(event, this, UpdateBarMenuPosition);
+
+        if (gui.barMenuTarget) {
+            UpdateSkillBarMenu(bar);
+        }
+
+        BeginDragMovable(event, this, UpdateSkillBarMenuPosition);
     };
 };
 
 function TrackMouseMove(e, callback) {
     const targetStyle = gui.movable.target.style;
-    targetStyle.top = (e.pageY - gui.movable.offsetY) + "px";
-    targetStyle.left = (e.pageX - gui.movable.offsetX) + "px";
+
+    const y = e.pageY - gui.movable.offsetY;
+    const x = e.pageX - gui.movable.offsetX;
+
+    targetStyle.top = y + "px";
+    targetStyle.left = x + "px";
 
     if (callback) {
-        callback(targetStyle.left, targetStyle.top);
+        callback(x, y);
     }
 };
 
-function BeginDrageMovable(event, skillBar, callback) {
+function BeginDragMovable(event, bar, callback) {
     event.stopPropagation();
 
+    SelectSkillBar(bar);
+
     gui.movable = {
-        target: skillBar,
-        offsetX: event.clientX - skillBar.offsetLeft,
-        offsetY: event.clientY - skillBar.offsetTop
+        target: bar,
+        offsetX: event.clientX - bar.offsetLeft,
+        offsetY: event.clientY - bar.offsetTop
     }
 
-    document.onmousemove = function (event) {
-        TrackMouseMove(event, callback);
+    document.onmousemove = function (e) {
+        TrackMouseMove(e, callback);
     };
 
     document.onmouseup = ReleaseMovable;
@@ -263,4 +327,12 @@ function ReleaseMovable() {
     document.onmousemove = null;
     document.onmouseup = null;
     gui.movable = null;
+};
+
+function SelectSkillBar(bar) {
+    const selected = document.getElementsByClassName("selected");
+    if (selected.length > 0) {
+        selected[0].className = selected[0].className.replace(" selected", "");
+    }
+    bar.className += " selected";  
 };

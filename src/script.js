@@ -138,32 +138,31 @@ function SkillButton_onclick(button){
 
 function StartSkillCountDown(button){
 	button.className += ' disabled';
-	var countDown = 3;
+	var duration = 3000;
+	var precision = 1000;
 	
 	var labelCountDown = document.createElement('span');
-	labelCountDown.innerText = countDown;
+	labelCountDown.innerText = duration;
 	labelCountDown.className = 'countdown';
 	button.appendChild(labelCountDown);
 	
-	//SkillButtonCountDown(button, 1000, countDown, labelCountDown);
+	SkillButtonCountDown(button, precision, duration, labelCountDown);
 }
 
 function SkillButtonCountDown(button, interval, countDown, labelCountDown){
-	countDown--;
 	
-	if(countDown == 0){
-		console.log('finished');
-		button.className.replace(' disabled', '');
+	labelCountDown.innerText = countDown/1000.0;
+	
+	countDown -= interval;
+		
+	if(countDown < 0){
+		button.className = button.className.replace(' disabled', '');
 		button.removeChild(labelCountDown);
 		return;
-	}	
-	
-	console.log('tick #'+countDown);
+	}
 		
-	setInterval(function(){
-		labelCountDown.innerText = countDown;
-		skillButtonCountDown(button, interval, countDown, labelCountDown);
-	}, interval);
+	setTimeout(SkillButtonCountDown, interval, 
+				button, interval, countDown, labelCountDown);
 };
 
 function AddBar(){

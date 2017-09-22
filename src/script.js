@@ -4,7 +4,11 @@ var gui = {
     lock: null,
     isEditMode: false,
     barMenuTarget: null,
-    movable: null
+    movable: null,
+    button: {
+        offsetRight: 4,
+        offsetBottom: 4
+    }
 };
 
 function Initialize() {
@@ -12,7 +16,7 @@ function Initialize() {
     document.onclick = function (e) {
         // Handle left click on button
         if (e.target.classList.contains("skill-button")) {
-            if (gui.isEditMode) return;
+            if (gui.isEditMode) { return; }
             SkillButton_onclick(e.target);
         }
     };
@@ -28,13 +32,19 @@ function Initialize() {
     InitializeSkillBarMenu();
 
     // Load user UI
-    SpawnBar();
+    const json = '{\"settings\":{\"buttonOffsetRight\":4,\"buttonOffsetBottom\":4},' +
+        '\"bars\":[' +
+        '{\"position\":{\"top\":50,\"left\":50},\"buttons\":6,\"rows\":1},' +
+        '{\"position\":{\"top\":156,\"left\":175},\"buttons\":4,\"rows\":2},' +
+        '{\"position\":{\"top\":100,\"left\":300},\"buttons\":3,\"rows\":2}' +
+        ']}';
+    LoadUserUI(json);
 };
 
 function OnWindowContextMenu(e) {
     e.stopPropagation();
 
-    // if right click on edition mode 
+    // On right click on edition mode 
     if (gui.isEditMode) {
         //TODO: dirty
         if (e.target.classList.contains("skill-bar")) {
@@ -66,8 +76,8 @@ function InitializeSkillBarMenu() {
     InitializePositionAxe("sbm-pos-y", false);
 
     // setup sliders
-    InitializeSlider("sbm-buttons", OnRowSliderChange);
-    InitializeSlider("sbm-rows", OnRowSliderChange);
+    InitializeSlider("sbm-buttons", SaveUIState);
+    InitializeSlider("sbm-rows", SaveUIState);
 };
 
 function InitializePositionAxe(id, isX) {
@@ -119,12 +129,10 @@ function SetSkillBarPosition(pos) {
     targetStyle.left = pos.x + "px";
 };
 
-function OnButtonSliderChange(event, slider) {
-    console.log(slider.id + " OnButtonSlider input:" + slider.value); //TODO
-};
+function SaveUIState() {
+    console.log("SaveUIState"); //TODO
 
-function OnRowSliderChange(event, slider) {
-    console.log(slider.id + " OnRowSlider input:" + slider.value, event); //TODO
+    var state= gui.barMenuTarget
 };
 
 function StopMouseDownPropagation(event) {
@@ -134,15 +142,16 @@ function StopMouseDownPropagation(event) {
 function InitializeSlider(id, callback) {
     const slider = document.getElementById(id);
     slider.onmousedown = StopMouseDownPropagation;
-
-    const label = document.getElementById(id + "-value");
-    label.innerHTML = slider.value;
-
     slider.oninput = function (event) {
         event.stopPropagation();
-        label.innerHTML = this.value;
+        document.getElementById(id + "-value").innerHTML = this.value;
         callback(event, this);
     };
+};
+
+function SetSliderValue(id, value) {
+    document.getElementById(id).value = value;
+    document.getElementById(id + "-value").innerHTML = value;
 };
 
 function ShowSkillBarMenu(e, bar) {
@@ -179,12 +188,11 @@ function UpdateSkillBarMenu(bar) {
 
     const pos = GetPosition(bar);
     UpdateSkillBarMenuPosition(pos.x, pos.y);
-    
-    SelectSkillBar(bar);
 
-    //TODO: rows/buttons from bar ref.
-    document.getElementById("sbm-buttons").value = 10;
-    document.getElementById("sbm-rows").value = 1;
+    SelectSkillBar(bar);
+    
+    SetSliderValue("sbm-buttons", bar.getAttribute("buttons"));
+    SetSliderValue("sbm-rows", bar.getAttribute("rows"));
 };
 
 function UpdateSkillBarMenuPosition(x, y) {
@@ -228,16 +236,27 @@ function SkillButtonCountDown(button, interval, countDown, labelCountDown) {
         button, interval, countDown, labelCountDown);
 };
 
-function SpawnBar() {
+function LoadUserUI(json) {
+    const ui = JSON.parse(json);
+    for (let i = 0; i < ui.bars.length; i++) {
+        SpawnBar(ui.settings, ui.bars[i]);
+    }
+};
+
+function SpawnBar(globalSettings, barSettings) {
     const bar = document.createElement("div");
     bar.className = "skill-bar";
+    bar.style.top = barSettings.position.top + "px";
+    bar.style.left = barSettings.position.left + "px";
+    bar.setAttribute("buttons", barSettings.buttons);
+    bar.setAttribute("rows", barSettings.rows);
 
     if (gui.isEditMode) {
         SetSkillBarMovable(bar);
     }
 
     // Add buttons
-    const buttonCount = 10;
+    const buttonCount = barSettings.buttons;
     for (let i = 0; i < buttonCount; i++) {
         const button = document.createElement("div");
         button.className = "skill-button";
@@ -334,5 +353,5 @@ function SelectSkillBar(bar) {
     if (selected.length > 0) {
         selected[0].className = selected[0].className.replace(" selected", "");
     }
-    bar.className += " selected";  
+    bar.className += " selected";
 };

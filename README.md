@@ -6,25 +6,35 @@ Go to: demo/default.html, enjoy.
 
 ## Features
 
-### Actions bars
- - Create/remove
- - Movable.
+### Actions bars  
+| Feature | State |
+|--|--|
+| Create/Remove bar | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
+| Bars are movable | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
  
 ### Actions bar's contextual menu:
- - Set bar position on screen
- - Set slot number per bar.
- - Set line numer.
+| Feature | State |
+|--|--|
+| Set bar position on screen | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
+| Set slot number per bar | ![State](https://img.shields.io/badge/state-in%20progress-orange.svg) |
+| Set line numer | ![State](https://img.shields.io/badge/state-in%20progress-orange.svg) |
 
 ### Actions bar's slot
- - Add/remove actions to slots.
- - Handle cooldown & graphical counter.
- - Handle global cooldown.
- - Handle user defined shortcut.
+| Feature | State |
+|--|--|
+| Handle cooldown & graphical counter | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
+| Add/remove actions to slots | ![State](https://img.shields.io/badge/state-todo-red.svg) |
+| Handle global cooldown | ![State](https://img.shields.io/badge/state-todo-red.svg) |
+| Handle user defined shortcut | ![State](https://img.shields.io/badge/state-todo-red.svg) |
 
 ### User settings: 
- - UI can be save/load
- - User can have multiple UI profile
+| Feature | State |
+|--|--|
+| UI can be save/load | ![State](https://img.shields.io/badge/state-todo-red.svg) |
+| User can have multiple UI profile | ![State](https://img.shields.io/badge/state-todo-red.svg) |
  
 ### Others
- - UI edition mode enable/disable.
- - Display background grid on edition mode.
+| Feature | State |
+|--|--|
+| UI edition mode enable/disable | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
+| Display background grid on edition mode | ![State](https://img.shields.io/badge/state-todo-red.svg) |

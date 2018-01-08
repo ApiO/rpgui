@@ -4,6 +4,9 @@ Prototype of RPG UI in standard HTML/CSS3 without javascript framework.
 # Try it
 Go to: demo/default.html, enjoy.
 
+![State](https://github.com/ApiO/rpgui/blob/master/documentations/Global.png) 
+![State](https://github.com/ApiO/rpgui/blob/master/documentations/countdown.png) 
+
 ## Features
 
 ### Actions bars  

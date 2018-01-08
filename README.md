@@ -12,7 +12,7 @@ Go to: demo/default.html, enjoy.
 | Create/Remove bar | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
 | Bars are movable | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
  
-### Actions bar's contextual menu:
+### Actions bar's contextual menu
 | Feature | State |
 |--|--|
 | Set bar position on screen | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
@@ -27,7 +27,7 @@ Go to: demo/default.html, enjoy.
 | Handle global cooldown | ![State](https://img.shields.io/badge/state-todo-red.svg) |
 | Handle user defined shortcut | ![State](https://img.shields.io/badge/state-todo-red.svg) |
 
-### User settings: 
+### User settings
 | Feature | State |
 |--|--|
 | UI can be save/load | ![State](https://img.shields.io/badge/state-todo-red.svg) |

@@ -20,7 +20,7 @@ Go to: demo/default.html, enjoy.
 |--|--|
 | Set bar position on screen | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
 | Set slot number per bar | ![State](https://img.shields.io/badge/state-in%20progress-orange.svg) |
-| Set line numer | ![State](https://img.shields.io/badge/state-in%20progress-orange.svg) |
+| Set line number | ![State](https://img.shields.io/badge/state-in%20progress-orange.svg) |
 
 ### Actions bar's slot
 | Feature | State |

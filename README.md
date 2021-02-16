@@ -4,7 +4,8 @@ Prototype of RPG UI in standard HTML/CSS3 without javascript framework.
 # Try it
 Go to: demo/default.html, enjoy.
 
-![State](https://github.com/ApiO/rpgui/blob/master/documentations/Global.png) 
+![State](https://github.com/ApiO/rpgui/blob/master/documentations/Global.png) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FApiO%2Frpgui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FApiO%2Frpgui?ref=badge_shield)
+
 ![State](https://github.com/ApiO/rpgui/blob/master/documentations/countdown.png) 
 
 ## Features
@@ -41,3 +42,7 @@ Go to: demo/default.html, enjoy.
 |--|--|
 | UI edition mode enable/disable | ![State](https://img.shields.io/badge/state-done-brightgreen.svg) |
 | Display background grid on edition mode | ![State](https://img.shields.io/badge/state-todo-red.svg) |
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FApiO%2Frpgui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FApiO%2Frpgui?ref=badge_large)
